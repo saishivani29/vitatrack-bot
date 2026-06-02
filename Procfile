@@ -1,0 +1,1 @@
+worker: python vitatrack_bot.py
