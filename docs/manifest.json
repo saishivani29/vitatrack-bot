@@ -1,0 +1,24 @@
+{
+  "name": "VitaTrack",
+  "short_name": "VitaTrack",
+  "description": "Your daily life tracker — Simple, Private, Free",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8F7F4",
+  "theme_color": "#16A34A",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

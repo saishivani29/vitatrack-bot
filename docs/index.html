@@ -1,95 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="VitaTrack"/>
-<meta name="theme-color" content="#16A34A"/>
-<title>VitaTrack</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden}
-body{font-family:-apple-system,system-ui,sans-serif;background:#F8F7F4;color:#1C1917;max-width:480px;margin:0 auto;height:100vh;display:flex;flex-direction:column}
-:root{--g:#16A34A;--gl:#F0FDF4;--gd:#14532D;--am:#D97706;--bl:#2563EB;--rd:#DC2626;--og:#EA580C;--pu:#7C3AED;--bg:#F8F7F4;--cd:#FFFFFF;--br:rgba(0,0,0,0.08);--tx:#1C1917;--mt:#78716C;--ht:#A8A29E}
-#ls{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;padding:2rem;background:var(--bg)}
-.ll{font-size:72px;margin-bottom:1rem}
-.lt{font-size:30px;font-weight:900;letter-spacing:-0.5px}
-.ls{font-size:14px;color:var(--mt);margin:8px 0 2.5rem;text-align:center;line-height:1.6}
-.gb{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--br);border-radius:14px;padding:15px 24px;font-size:15px;font-weight:600;cursor:pointer;width:100%;justify-content:center;font-family:inherit}
-.db{margin-top:12px;background:transparent;border:1px solid var(--br);border-radius:14px;padding:12px 24px;font-size:14px;color:var(--mt);cursor:pointer;width:100%;font-family:inherit}
-#app{display:none;flex-direction:column;height:100vh}
-#app.v{display:flex}
-.hd{background:rgba(248,247,244,0.96);backdrop-filter:blur(12px);padding:0.8rem 1rem 0.65rem;padding-top:calc(env(safe-area-inset-top,0px) + 0.8rem);border-bottom:1px solid var(--br);flex-shrink:0}
-.hb{font-size:10px;font-weight:800;color:var(--g);letter-spacing:1.5px;margin-bottom:2px}
-.hr{display:flex;justify-content:space-between;align-items:center}
-.ht{font-size:17px;font-weight:800;letter-spacing:-0.3px}
-.bk{font-size:14px;color:var(--g);font-weight:600;cursor:pointer;display:none;margin-right:6px}
-.ct{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1rem 1rem 1.5rem}
-.bn{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--br);display:flex;flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0px)}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;padding:8px 4px 6px;border-top:2.5px solid transparent}
-.nb.a{border-top-color:var(--g)}
-.ni{font-size:20px}
-.nl{font-size:9px;font-weight:600;color:var(--ht);letter-spacing:0.3px}
-.nb.a .nl{color:var(--g)}
-.card{background:var(--cd);border:1px solid var(--br);border-radius:16px;padding:1rem 1.1rem;margin-bottom:0.85rem}
-.ct2{font-size:13.5px;font-weight:700;margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:center}
-.sr{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0.85rem}
-.sp{flex:1 1 100px;border-radius:14px;padding:0.85rem 0.9rem;border:1px solid transparent}
-.si{font-size:18px;margin-bottom:4px}
-.sl{font-size:10px;color:var(--mt);margin-bottom:2px}
-.sv{font-size:21px;font-weight:900;line-height:1}
-.sh{display:flex;align-items:center;gap:1.25rem;padding:1.1rem;background:var(--cd);border:1px solid var(--br);border-radius:16px;margin-bottom:0.85rem}
-.rw{position:relative;width:90px;height:90px;flex-shrink:0}
-.rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.rn{font-size:24px;font-weight:900}
-.rl{font-size:8px;color:var(--mt);font-weight:700;letter-spacing:0.5px}
-.sg{font-size:16px;font-weight:800;margin-bottom:4px}
-.sw{font-size:12px;color:var(--mt)}
-.srow{display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer}
-.si2{font-size:14px;width:20px;text-align:center;flex-shrink:0}
-.sla{font-size:11.5px;color:var(--mt);width:76px;flex-shrink:0}
-.sb{flex:1;background:#F0EDE8;border-radius:999px;height:7px;overflow:hidden}
-.sf{height:100%;border-radius:999px;transition:width 0.8s ease}
-.sn{font-size:12px;font-weight:700;width:28px;text-align:right;flex-shrink:0}
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.85rem}
-.cc{background:var(--cd);border:1px solid var(--br);border-radius:14px;padding:1rem;cursor:pointer;transition:transform 0.1s}
-.cc:active{transform:scale(0.97)}
-.ce{font-size:24px;margin-bottom:6px}
-.cn{font-size:13px;font-weight:700;margin-bottom:3px}
-.cs{font-size:12px;font-weight:600;margin-bottom:6px}
-.cba{background:#F0EDE8;border-radius:999px;height:4px;overflow:hidden}
-.cbf{height:100%;border-radius:999px}
-.ci{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--br);cursor:pointer}
-.ci:last-of-type{border-bottom:none}
-.cb{width:24px;height:24px;border-radius:7px;border:2px solid var(--ht);background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;font-size:13px;color:#fff}
-.cb.ck{background:var(--g);border-color:var(--g)}
-.cb.rd{border-radius:50%}
-.cb.rd.ck{background:var(--g);border-color:var(--g)}
-.cla{font-size:14px;font-weight:500;flex:1}
-.cpt{font-size:11.5px;color:var(--ht);font-weight:600}
-.na{width:100%;min-height:100px;padding:10px 12px;font-size:14px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);font-family:inherit;resize:vertical;line-height:1.65;outline:none;margin-top:10px}
-.na:focus{border-color:var(--g)}
-.btn{width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;border:none;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
-.bp{background:var(--g);color:#fff}
-.bs{background:transparent;color:var(--tx);border:1px solid var(--br)!important}
-.bd{background:transparent;color:var(--rd);border:1px solid rgba(220,38,38,0.3)!important}
-.al{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;margin-bottom:7px;font-size:13px}
-.bg{display:inline-flex;align-items:center;font-size:11.5px;padding:3px 10px;border-radius:999px;font-weight:700}
-.pr{background:#F0EDE8;border-radius:999px;height:8px;overflow:hidden}
-.pf{height:100%;border-radius:999px;transition:width 0.6s ease}
-.fl{width:100%;padding:10px 12px;font-size:13.5px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);font-family:inherit;outline:none}
-.fl:focus{border-color:var(--g)}
-.fll{font-size:11px;font-weight:700;color:var(--mt);letter-spacing:0.5px;margin:12px 0 5px}
-#ss{font-size:11px;font-weight:600}
-.sok{color:var(--g)}.spe{color:var(--am)}.ser{color:var(--rd)}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1C1917;color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity 0.3s;white-space:nowrap;pointer-events:none}
-.toast.sh2{opacity:1}
-::-webkit-scrollbar{display:none}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="VitaTrack"/>
+  <meta name="theme-color" content="#16A34A"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="apple-touch-icon" href="icons/icon.svg"/>
+  <link rel="stylesheet" href="style.css"/>
+  <title>VitaTrack</title>
 </head>
 <body>
+
+<!-- Ambient blobs (fade in on dark mode via CSS) -->
+<div class="ambient">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Login screen -->
 <div id="ls">
   <div class="ll">🌿</div>
   <div class="lt">VitaTrack</div>
@@ -108,6 +40,8 @@ body{font-family:-apple-system,system-ui,sans-serif;background:#F8F7F4;color:#1C
     No location · No photos · No camera<br>Your data stays in your own Google Sheet
   </p>
 </div>
+
+<!-- Main app -->
 <div id="app">
   <div class="hd">
     <div class="hb">VITATRACK 🌿</div>
@@ -116,79 +50,26 @@ body{font-family:-apple-system,system-ui,sans-serif;background:#F8F7F4;color:#1C
         <span class="bk" id="bk" onclick="goBack()">◀ Back</span>
         <span class="ht" id="pt">Dashboard</span>
       </div>
-      <div style="display:flex;align-items:center;gap:8px">
+      <div style="display:flex;align-items:center;gap:6px">
         <span style="font-size:11px;color:var(--mt)" id="hd2"></span>
         <span id="ss"></span>
+        <button class="thm-btn" id="thm" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
       </div>
     </div>
   </div>
   <div class="ct" id="con"></div>
   <nav class="bn">
     <button class="nb a" onclick="nav('home',this)"><span class="ni">🏠</span><span class="nl">HOME</span></button>
-    <button class="nb" onclick="nav('score',this)"><span class="ni">📊</span><span class="nl">SCORE</span></button>
-    <button class="nb" onclick="nav('track',this)"><span class="ni">✅</span><span class="nl">TRACK</span></button>
-    <button class="nb" onclick="nav('journal',this)"><span class="ni">📓</span><span class="nl">JOURNAL</span></button>
-    <button class="nb" onclick="nav('settings',this)"><span class="ni">⚙️</span><span class="nl">SETTINGS</span></button>
+    <button class="nb"   onclick="nav('score',this)"><span class="ni">📊</span><span class="nl">SCORE</span></button>
+    <button class="nb"   onclick="nav('track',this)"><span class="ni">✅</span><span class="nl">TRACK</span></button>
+    <button class="nb"   onclick="nav('journal',this)"><span class="ni">📓</span><span class="nl">JOURNAL</span></button>
+    <button class="nb"   onclick="nav('settings',this)"><span class="ni">⚙️</span><span class="nl">SETTINGS</span></button>
   </nav>
 </div>
+
 <div class="toast" id="toast"></div>
+
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-const CHS="2026-06-08",CHE="2026-10-05",SK="vitatrack_v3";
-const TK={tasks:["Priority One","Priority Two","Priority Three"],fitness:["Steps","Exercise","No Exercise","No Steps"],diet:["Eat healthy","Cheat day","No Sugar","8 glasses water","Dinner before 7","Not Met All"],sleep:["No phone 30 min before bed","7-8 hours target","Logged sleep hours"],mood:["Happy","Good","Neutral","Low","Stressed"],journal:["Update in Notes","No"],habits:["AM Skin Care","PM Skin Care","Hair Care","Medicine Calcium"],learning:["Read 20 pages of any book","AI","Finance"],gratitude:["Write 3 things I'm grateful for"],challenge:["Workout","Eat Healthy","Study"]};
-const SGL=new Set(["mood","journal"]);
-const MPS={Happy:100,Good:80,Neutral:60,Low:30,Stressed:20};
-const CM={tasks:{e:"✅",n:"Tasks",c:"#16A34A"},fitness:{e:"💪",n:"Fitness",c:"#EA580C"},diet:{e:"🥗",n:"Diet",c:"#0D9488"},sleep:{e:"😴",n:"Sleep",c:"#7C3AED"},mood:{e:"😊",n:"Mood",c:"#D97706"},journal:{e:"📓",n:"Journal",c:"#9333EA"},habits:{e:"🔄",n:"Habits",c:"#2563EB"},learning:{e:"📚",n:"Learning",c:"#F59E0B"},gratitude:{e:"🙏",n:"Gratitude",c:"#EC4899"}};
-const PN={home:"Dashboard",score:"Weekly Score",track:"Track Today",journal:"Journal & Notes",settings:"Settings"};
-const scc=s=>s>=80?"#16A34A":s>=60?"#2563EB":s>=40?"#D97706":"#DC2626";
-let S={user:null,checks:{},notes:{},sleepLog:{},weekly:{},checkins:[],settings:{appsScriptUrl:"",spreadsheetId:"",clientId:""}};
-let cp="home",cc=null,ns=[];
-function ld(){try{const r=localStorage.getItem(SK);if(r)S={...S,...JSON.parse(r)}}catch(e){}}
-function sv(){try{localStorage.setItem(SK,JSON.stringify(S))}catch(e){}}
-const td=()=>new Date().toISOString().split("T")[0];
-const wks=()=>{const d=new Date();d.setDate(d.getDate()-d.getDay()+1);return d.toISOString().split("T")[0]};
-const wkd=()=>{const ws=new Date(wks()+"T12:00:00");return Array.from({length:7},(_,i)=>{const d=new Date(ws);d.setDate(ws.getDate()+i);return d.toISOString().split("T")[0]})};
-const fmt=d=>d?new Date(d+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
-const fms=d=>d?new Date(d+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short"}):"";
-function gc(cat,date=null){const d=date||td();return S.checks[d]?.[cat]||[]}
-function tg(cat,item){const d=td();if(!S.checks[d])S.checks[d]={};if(!S.checks[d][cat])S.checks[d][cat]=[];if(SGL.has(cat)){const w=S.checks[d][cat].includes(item);S.checks[d][cat]=w?[]:[item]}else{const i=S.checks[d][cat].indexOf(item);if(i>-1)S.checks[d][cat].splice(i,1);else S.checks[d][cat].push(item)}sv();syncR(cat)}
-function at(cat,item){const d=td();if(!S.checks[d])S.checks[d]={};if(!S.checks[d][cat])S.checks[d][cat]=[];if(!S.checks[d][cat].includes(item))S.checks[d][cat].push(item);sv()}
-function sc(cat,date){const c=gc(cat,date);switch(cat){case"tasks":{const it=TK.tasks;return Math.round(c.filter(i=>it.includes(i)).length/it.length*100)||0}case"fitness":{const s=c.includes("No Steps")?0:c.includes("Steps")?50:0;const e=c.includes("No Exercise")?0:c.includes("Exercise")?50:0;return s+e}case"diet":{if(c.includes("Cheat day")||c.includes("Not Met All"))return 0;const s=["Eat healthy","No Sugar","8 glasses water","Dinner before 7"];return Math.round(c.filter(i=>s.includes(i)).length/s.length*100)||0}case"sleep":{const s=["No phone 30 min before bed","7-8 hours target","Logged sleep hours"];return Math.round(c.filter(i=>s.includes(i)).length/s.length*100)||0}case"mood":{for(const[m,p]of Object.entries(MPS))if(c.includes(m))return p;return 0}case"journal":return c.includes("Update in Notes")?100:0;case"habits":{const it=TK.habits;return Math.round(c.filter(i=>it.includes(i)).length/it.length*100)||0}case"learning":{const it=TK.learning;return Math.round(c.filter(i=>it.includes(i)).length/it.length*100)||0}case"gratitude":return c.includes("Write 3 things I'm grateful for")?100:0;default:return 0}}
-function wsc(){const days=wkd();const s={};for(const cat of Object.keys(CM))s[cat]=Math.round(days.reduce((sum,d)=>sum+sc(cat,d),0)/7);const wc=(S.checkins||[]).filter(c=>days.includes(c.date)).length;s.challenge=Math.min(100,wc*14);s.overall=Math.round(Object.values(s).reduce((a,b)=>a+b,0)/Object.keys(s).length);return s}
-function grade(s){if(s>=90)return"A+ 🌟 Outstanding!";if(s>=80)return"A  🎯 Excellent!";if(s>=70)return"B+ ✅ Great job!";if(s>=60)return"B  👍 Good week!";if(s>=50)return"C  ⚠️ Room to grow";return"D  💪 Keep pushing!"}
-function tips(sc2){const T={tasks:"• Complete all 3 priorities every day.",fitness:"• Log steps and exercise daily.",diet:"• Eat healthy, no sugar, water, early dinner.",sleep:"• Phone down 30 min before bed.",mood:"• Check in with mood every day.",journal:"• Update notes daily.",habits:"• Do all 4 care steps every day.",learning:"• Pick one area and go deep.",gratitude:"• Write 3 things grateful every day.",challenge:"• Show up every single day."};return Object.entries(sc2).filter(([k])=>k!=="overall"&&k!=="challenge").sort((a,b)=>a[1]-b[1]).slice(0,3).map(([k])=>T[k]||`• Keep working on ${k}.`).join("\n")}
-function chd(){const s=new Date(CHS+"T12:00:00");return Math.floor((new Date()-s)/86400000)+1}
-function signInGoogle(){const cid=S.settings.clientId;if(!cid){toast("Set Google Client ID in Settings first.");return}try{google.accounts.id.initialize({client_id:cid,callback:(res)=>{const p=JSON.parse(atob(res.credential.split(".")[1]));S.user={name:p.name,email:p.email,picture:p.picture};sv();showApp()},auto_select:true});google.accounts.id.prompt()}catch(e){demoLogin()}}
-function demoLogin(){const name=prompt("Enter your name:");if(!name)return;S.user={name,email:"local@vitatrack.app",picture:null};sv();showApp()}
-function showApp(){document.getElementById("ls").style.display="none";document.getElementById("app").classList.add("v");document.getElementById("hd2").textContent=new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short"});nav("home")}
-function signOut(){if(!confirm("Sign out?"))return;S.user=null;sv();document.getElementById("app").classList.remove("v");document.getElementById("ls").style.display="flex"}
-async function syncR(cat){const url=S.settings.appsScriptUrl;if(!url)return;const d=td();const ck=gc(cat);const note=S.notes?.[d]?.[cat]||"";const s=sc(cat,d);const items=TK[cat]||[];setSS("spe");try{await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({category:cat,headers:["Date",...items,"Note","Score"],row:[d,...items.map(i=>ck.includes(i)?"YES":"no"),note,s]})});setSS("sok")}catch(e){setSS("ser")}}
-function setSS(cl){const el=document.getElementById("ss");el.className=cl;el.textContent=cl==="sok"?"● Synced":cl==="spe"?"● Saving…":"● Error"}
-function nav(page,btn=null){cp=page;cc=null;ns=[];document.querySelectorAll(".nb").forEach(b=>b.classList.remove("a"));if(btn)btn.classList.add("a");else{const m={home:0,score:1,track:2,journal:3,settings:4};document.querySelectorAll(".nb")[m[page]]?.classList.add("a")}document.getElementById("pt").textContent=PN[page]||page;document.getElementById("bk").style.display="none";({home:rHome,score:rScore,track:rTrack,journal:rJournal,settings:rSettings})[page]?.()}
-function openC(cat){ns.push(cp);cc=cat;const m=cat==="challenge"?{e:"🗓",n:"120 Day Challenge"}:CM[cat];document.getElementById("pt").textContent=`${m.e} ${m.n}`;document.getElementById("bk").style.display="inline";cat==="challenge"?rChallenge():rCat(cat)}
-function goBack(){cc=null;document.getElementById("bk").style.display="none";nav(ns.pop()||"track")}
-function rHome(){const d=td();const scores=wsc();const h=new Date().getHours();const gr=h<12?"Good morning":h<17?"Good afternoon":"Good evening";const name=S.user?.name?.split(" ")[0]||"Friend";const cats=Object.keys(CM);const tavg=Math.round(cats.reduce((s,c)=>s+sc(c,d),0)/cats.length);const dn=chd();const inC=dn>=1&&dn<=120;const pct=Math.min(100,Math.round(dn/120*100));const dl=Math.max(0,120-dn+1);const als=[];if(sc("tasks",d)<100)als.push({m:"Not all tasks completed",c:"#D97706",e:"📋"});if(sc("fitness",d)===0)als.push({m:"No fitness logged today",c:"#EA580C",e:"💪"});if(sc("mood",d)===0)als.push({m:"Mood not logged today",c:"#7C3AED",e:"😊"});if(sc("gratitude",d)===0)als.push({m:"Gratitude not logged today",c:"#EC4899",e:"🙏"});if(sc("habits",d)<100)als.push({m:"Habits not fully done today",c:"#2563EB",e:"🔄"});document.getElementById("con").innerHTML=`<div style="margin-bottom:1.25rem"><div style="font-size:11px;font-weight:800;color:var(--g);letter-spacing:1px;margin-bottom:4px">TODAY</div><div style="font-size:22px;font-weight:900;letter-spacing:-0.5px">${gr}, ${name} 👋</div><div style="font-size:12.5px;color:var(--mt);margin-top:3px">${new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"})}</div></div><div class="sr"><div class="sp" style="background:#F0FDF4;border-color:rgba(22,163,74,0.2)"><div class="si">🌿</div><div class="sl">Today score</div><div class="sv" style="color:var(--g)">${tavg}</div></div><div class="sp" style="background:#FFF7ED;border-color:rgba(234,88,12,0.2)"><div class="si">📊</div><div class="sl">Week overall</div><div class="sv" style="color:var(--og)">${scores.overall}</div></div>${inC?`<div class="sp" style="background:#F0FDF4;border-color:rgba(22,163,74,0.2)"><div class="si">🗓</div><div class="sl">Day of 120</div><div class="sv" style="color:var(--g)">${dn}</div></div>`:""}</div>${als.length?`<div class="card"><div class="ct2">⚠️ Alerts</div>${als.map(a=>`<div class="al" style="background:${a.c}12;border:1px solid ${a.c}30"><span>${a.e}</span><span>${a.m}</span></div>`).join("")}</div>`:`<div class="card" style="background:var(--gl);border-color:rgba(22,163,74,0.2)"><div style="text-align:center;padding:0.5rem;font-size:14px;color:var(--gd);font-weight:700">✅ Everything tracked today!</div></div>`}${inC?`<div class="card" onclick="openC('challenge')" style="cursor:pointer"><div class="ct2">🗓 120 Day Challenge <span class="bg" style="background:var(--gl);color:var(--g)">Day ${dn}</span></div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--mt);margin-bottom:6px"><span>${fms(CHS)}</span><span>${dl} days left</span></div><div class="pr"><div class="pf" style="width:${pct}%;background:var(--g)"></div></div></div>`:""}<div class="card"><div class="ct2">Today at a glance</div>${cats.map(cat=>{const s=sc(cat,d);const col=scc(s);const m=CM[cat];return`<div class="srow" onclick="openC('${cat}')"><div class="si2">${m.e}</div><div class="sla">${m.n}</div><div class="sb"><div class="sf" style="width:${s}%;background:${col}"></div></div><div class="sn" style="color:${col}">${s}</div></div>`}).join("")}</div>`}
-function rScore(){const scores=wsc();const ov=scores.overall;const col=scc(ov);const r=42,circ=2*Math.PI*r,off=circ-(ov/100)*circ;const ws=wks();const wn=S.weekly?.[ws]?.reflection||"";const ca=[...Object.keys(CM),"challenge"];document.getElementById("con").innerHTML=`<div class="sh"><div class="rw"><svg width="90" height="90" viewBox="0 0 96 96"><circle cx="48" cy="48" r="${r}" fill="none" stroke="#E8F5E9" stroke-width="9"/><circle cx="48" cy="48" r="${r}" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${off}" style="transform:rotate(-90deg);transform-origin:center"/></svg><div class="rc"><div class="rn" style="color:${col}">${ov}</div><div class="rl">OVERALL</div></div></div><div><div class="sg">${grade(ov)}</div><div class="sw">Week of ${fms(ws)}</div></div></div><div class="card"><div class="ct2">Category scores</div>${ca.map(cat=>{const s=scores[cat];const col=scc(s);const m=cat==="challenge"?{e:"🗓",n:"120 Days"}:CM[cat];return`<div class="srow" onclick="openC('${cat}')"><div class="si2">${m.e}</div><div class="sla">${m.n}</div><div class="sb"><div class="sf" style="width:${s}%;background:${col}"></div></div><div class="sn" style="color:${col}">${s}</div></div>`}).join("")}</div><div class="card" style="background:#FFFBF0;border-color:rgba(217,119,6,0.2)"><div class="ct2" style="color:#92400E">📌 Focus next week</div><div style="font-size:13.5px;color:#78350F;line-height:1.9;white-space:pre-line">${tips(scores)}</div></div><div class="card"><div class="ct2">📝 Weekly reflection</div><textarea class="na" id="wref" placeholder="How was this week?">${wn}</textarea><button class="btn bp" onclick="swref()">💾 Save</button></div>`}
-function swref(){const ws=wks();const t=document.getElementById("wref")?.value?.trim();if(!t)return;if(!S.weekly)S.weekly={};S.weekly[ws]={reflection:t};sv();toast("📝 Saved!")}
-function rTrack(){const d=td();const dn=chd();const inC=dn>=1&&dn<=120;const pct=Math.min(100,Math.round(dn/120*100));const st=(S.checkins||[]).some(c=>c.date===d);document.getElementById("con").innerHTML=`<div style="font-size:13px;color:var(--mt);margin-bottom:1rem">Tap any category to log today</div><div class="cg">${Object.keys(CM).map(cat=>{const s=sc(cat,d);const col=scc(s);const m=CM[cat];return`<div class="cc" onclick="openC('${cat}')"><div class="ce">${m.e}</div><div class="cn">${m.n}</div><div class="cs" style="color:${col}">${s}/100</div><div class="cba"><div class="cbf" style="width:${s}%;background:${col}"></div></div></div>`}).join("")}</div>${inC?`<div class="card" onclick="openC('challenge')" style="cursor:pointer"><div class="ct2">🗓 120 Day Challenge <span class="bg" style="background:var(--gl);color:var(--g)">Day ${dn}/120</span></div><div class="pr" style="margin-bottom:8px"><div class="pf" style="width:${pct}%;background:var(--g)"></div></div>${st?`<span class="bg" style="background:var(--gl);color:var(--g)">✅ Checked in</span>`:`<span style="font-size:12.5px;color:var(--am);font-weight:600">Tap to check in →</span>`}</div>`:""}`}
-function rCat(cat){const meta=CM[cat];const items=TK[cat]||[];const ck=gc(cat);const s=sc(cat,td());const note=S.notes?.[td()]?.[cat]||"";const isSgl=SGL.has(cat);const disp=items.filter(i=>i!=="Logged sleep hours");const sl=S.sleepLog?.[td()];const HT={tasks:"All 3 = 100",fitness:"Steps=50·Exercise=50",diet:"4 items×25 each",sleep:"3 items equal",mood:"Happy=100·Good=80·Neutral=60·Low=30·Stressed=20",journal:"Update=100·No=0",habits:"All 4 equal=25 each",learning:"All 3 equal",gratitude:"Checked=100"};const PT={};if(cat==="tasks")items.forEach(i=>PT[i]=33);if(cat==="fitness"){PT["Steps"]=50;PT["Exercise"]=50}if(cat==="diet"){["Eat healthy","No Sugar","8 glasses water","Dinner before 7"].forEach(i=>PT[i]=25)}if(cat==="sleep"){["No phone 30 min before bed","7-8 hours target","Logged sleep hours"].forEach(i=>PT[i]=33)}if(cat==="mood")Object.assign(PT,MPS);if(cat==="habits")items.forEach(i=>PT[i]=25);if(cat==="learning")items.forEach(i=>PT[i]=33);document.getElementById("con").innerHTML=`<div class="card" style="border-left:3px solid ${meta.c}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><div style="font-size:26px;font-weight:900;color:${meta.c}">${s}/100</div><div style="font-size:11px;color:var(--mt)">Today</div></div><div style="font-size:11.5px;color:var(--mt);text-align:right;max-width:160px">${HT[cat]||""}</div></div><div class="pr"><div class="pf" style="width:${s}%;background:${meta.c}"></div></div></div><div class="card"><div class="ct2">${isSgl?"Select one 👇":"Tap to check off 👇"}</div>${disp.map(item=>{const ck2=ck.includes(item);const pts=PT[item];return`<div class="ci" onclick="dc('${cat}','${item.replace(/'/g,"\\'")}')"><div class="cb ${isSgl?"rd":""} ${ck2?"ck":""}">${ck2?"✓":""}</div><div class="cla">${item}</div>${pts?`<div class="cpt">${pts}pts</div>`:""}</div>`}).join("")}${cat==="sleep"?`<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--br)"><div style="font-size:12px;font-weight:700;color:var(--mt);margin-bottom:8px">LOG SLEEP HOURS</div>${sl?`<div style="padding:10px;background:var(--gl);border-radius:10px;font-size:13px;color:var(--gd);font-weight:600">✅ ${sl.hours}h · Quality ${sl.quality}/10</div>`:`<div style="display:flex;gap:8px"><input id="sh" type="number" step="0.5" min="1" max="14" placeholder="Hours e.g. 7.5" style="flex:1;padding:10px;font-size:14px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);font-family:inherit;outline:none"/><select id="sq" style="flex:1;padding:10px;font-size:14px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);font-family:inherit;outline:none">${[1,2,3,4,5,6,7,8,9,10].map(i=>`<option value="${i}">Quality ${i}/10</option>`).join("")}</select></div><button class="btn bp" onclick="logSleep()">Log sleep</button>`}</div>`:""}</div><div class="card"><div class="ct2">📝 Note</div><textarea class="na" id="cnote" placeholder="Any notes…">${note}</textarea><button class="btn bp" onclick="scn('${cat}')">Save note</button></div>${note?`<div class="card" style="background:var(--gl);border-color:rgba(22,163,74,0.2)"><div style="font-size:12px;font-weight:700;color:var(--g);margin-bottom:5px">Saved</div><div style="font-size:13.5px;color:var(--gd);line-height:1.65">${note}</div></div>`:""}`}
-function dc(cat,item){tg(cat,item);rCat(cat)}
-function scn(cat){const d=td();const t=document.getElementById("cnote")?.value?.trim()||"";if(!S.notes)S.notes={};if(!S.notes[d])S.notes[d]={};S.notes[d][cat]=t;sv();syncR(cat);toast("📝 Saved!");rCat(cat)}
-function logSleep(){const h=parseFloat(document.getElementById("sh")?.value||0);const q=parseInt(document.getElementById("sq")?.value||5);if(!h||h<=0){toast("Enter hours");return}if(!S.sleepLog)S.sleepLog={};S.sleepLog[td()]={hours:h,quality:q};at("sleep","Logged sleep hours");syncR("sleep");toast(`😴 ${h}h logged!`);rCat("sleep")}
-function rChallenge(){const dn=chd();const dl=Math.max(0,120-dn+1);const pct=Math.min(100,Math.round(dn/120*100));const cks=S.checkins||[];const st=cks.some(c=>c.date===td());const chi=TK.challenge;const ck=gc("challenge");const done=chi.filter(i=>ck.includes(i)).length;if(dn<1){const dt=Math.abs(dn)+1;document.getElementById("con").innerHTML=`<div class="card" style="text-align:center;padding:2.5rem 1rem"><div style="font-size:56px">🗓</div><div style="font-size:22px;font-weight:900;color:var(--gd);margin-top:1rem">120 Day Challenge</div><div style="font-size:14px;color:var(--mt);margin-top:8px">Starts in ${dt} days</div><div style="font-size:16px;font-weight:700;color:var(--g);margin-top:12px">📅 June 8, 2026</div></div>`;return}if(dn>120){document.getElementById("con").innerHTML=`<div class="card" style="background:var(--gl);text-align:center;padding:2.5rem 1rem"><div style="font-size:56px">🎉</div><div style="font-size:26px;font-weight:900;color:var(--gd);margin-top:12px">Complete!</div><div style="font-size:13px;color:var(--mt);margin-top:12px">${cks.length} check-ins recorded</div></div>`;return}let mot="";if(dn<=10)mot="Great start! 🔥";else if(dn<=30)mot="One month in! 💪";else if(dn<=60)mot="Halfway! 🚀";else if(dn<=90)mot="75% done! 🏁";else mot="Final stretch! 🌟";const recent=[...cks].reverse().slice(0,5);document.getElementById("con").innerHTML=`<div class="card"><div style="text-align:center;padding:0.5rem 0 1rem"><div style="font-size:12px;color:var(--mt);font-weight:700">DAY</div><div style="font-size:58px;font-weight:900;color:var(--gd);line-height:1">${dn}</div><div style="font-size:14px;color:var(--mt)">of 120</div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--mt);margin-bottom:6px"><span>📅 ${fms(CHS)}</span><span>${dl} left</span></div><div class="pr" style="height:10px"><div class="pf" style="width:${pct}%;background:var(--g)"></div></div><div style="text-align:center;margin-top:12px;font-size:13px;color:var(--mt);font-style:italic">${mot}</div></div><div class="card"><div class="ct2">Today <span style="font-size:12px;color:var(--mt);font-weight:400">${done}/${chi.length}</span></div>${chi.map(item=>{const ck2=ck.includes(item);return`<div class="ci" onclick="ctg('${item}')"><div class="cb ${ck2?"ck":""}">${ck2?"✓":""}</div><div class="cla">${item}</div></div>`}).join("")}<div style="margin-top:12px">${st?`<div style="padding:12px;background:var(--gl);border-radius:12px;text-align:center;font-weight:700;color:var(--gd)">✅ Day ${dn} done!</div>`:`<button class="btn bp" onclick="saveCk()">💾 Save check-in</button>`}</div></div>${recent.length?`<div class="card"><div class="ct2">Recent</div>${recent.map(c=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--br);font-size:13px"><span style="font-weight:700;color:var(--g)">Day ${c.day}</span><span style="color:var(--mt)">${fms(c.date)}</span><span>${c.done}</span></div>`).join("")}</div>`:""}`}
-function ctg(item){tg("challenge",item);rChallenge()}
-function saveCk(){const d=td();const dn=chd();const chi=TK.challenge;const ck=gc("challenge");const done=chi.filter(i=>ck.includes(i));if(!S.checkins)S.checkins=[];S.checkins.push({date:d,day:dn,done:done.join(", ")||"Showed up"});sv();toast(`✅ Day ${dn} checked in!`);rChallenge()}
-function rJournal(){const d=td();const ws=wks();const entry=S.notes?.[d]?.journal_entry||"";const wn=S.weekly?.[ws]?.reflection||"";const past=Object.keys(S.notes||{}).filter(dt=>dt!==d&&S.notes[dt]?.journal_entry).sort((a,b)=>b.localeCompare(a)).slice(0,5);document.getElementById("con").innerHTML=`<div class="card"><div class="ct2">📓 Today</div><textarea class="na" id="je" style="min-height:140px" placeholder="How was your day?">${entry}</textarea><button class="btn bp" onclick="sje()">💾 Save</button></div>${entry?`<div class="card" style="background:var(--gl)"><div style="font-size:12px;font-weight:700;color:var(--g);margin-bottom:5px">Saved</div><div style="font-size:13.5px;color:var(--gd);line-height:1.65">${entry}</div></div>`:""}<div class="card"><div class="ct2">📝 Weekly note</div><textarea class="na" id="wn" placeholder="This week I learned…">${wn}</textarea><button class="btn bp" onclick="swn()">💾 Save</button></div>${past.length?`<div class="card"><div class="ct2">Past entries</div>${past.map(dt=>{const e=S.notes[dt].journal_entry;return`<div style="padding:12px 0;border-bottom:1px solid var(--br)"><div style="font-size:11.5px;color:var(--mt);margin-bottom:5px;font-weight:600">${fmt(dt)}</div><div style="font-size:13.5px;color:var(--tx);line-height:1.65">${e.length>180?e.slice(0,180)+"…":e}</div></div>`}).join("")}</div>`:""}`}
-function sje(){const d=td();const t=document.getElementById("je")?.value?.trim();if(!S.notes)S.notes={};if(!S.notes[d])S.notes[d]={};S.notes[d].journal_entry=t||"";sv();toast("📓 Saved!");rJournal()}
-function swn(){const ws=wks();const t=document.getElementById("wn")?.value?.trim();if(!t)return;if(!S.weekly)S.weekly={};S.weekly[ws]={reflection:t};sv();toast("📝 Saved!")}
-function rSettings(){const u=S.user;const s=S.settings;document.getElementById("con").innerHTML=`${u?`<div class="card"><div style="display:flex;align-items:center;gap:12px">${u.picture?`<img src="${u.picture}" style="width:46px;height:46px;border-radius:50%"/>`:`<div style="width:46px;height:46px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:22px">👤</div>`}<div><div style="font-weight:700;font-size:15px">${u.name}</div><div style="font-size:12px;color:var(--mt)">${u.email}</div></div></div></div>`:""}<div class="card"><div class="ct2">📊 Google Sheets</div><div style="background:#EFF6FF;border-radius:10px;padding:10px;margin-bottom:12px;font-size:12.5px;color:#1E40AF;line-height:1.75">1. Open vitatrack_apps_script.gs<br>2. Go to script.google.com → New project<br>3. Paste code → Deploy → Web app<br>4. Copy URL → paste below</div><div class="fll">APPS SCRIPT URL</div><input class="fl" id="aurl" value="${s.appsScriptUrl||""}" placeholder="https://script.google.com/macros/s/.../exec"/><div class="fll">SPREADSHEET ID</div><input class="fl" id="sid" value="${s.spreadsheetId||""}" placeholder="Optional"/><button class="btn bp" onclick="ss2()">Save</button></div><div class="card"><div class="ct2">📱 Add to iPhone</div><div style="font-size:13.5px;color:var(--mt);line-height:1.9">1️⃣ Open in Safari<br>2️⃣ Tap Share ↑<br>3️⃣ Add to Home Screen<br>4️⃣ Tap Add 🎉</div></div><div class="card"><div class="ct2">🗓 Challenge dates</div><div style="font-size:13.5px;color:var(--mt)">📅 ${fmt(CHS)}<br>🏁 ${fmt(CHE)}</div></div><button class="btn bs" onclick="expD()">⬇️ Export data</button><button class="btn bd" onclick="signOut()" style="margin-top:8px">Sign out</button>`}
-function ss2(){S.settings.appsScriptUrl=document.getElementById("aurl")?.value?.trim()||"";S.settings.spreadsheetId=document.getElementById("sid")?.value?.trim()||"";sv();toast("✅ Saved!")}
-function expD(){const b=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=`vitatrack-${td()}.json`;a.click()}
-function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("sh2");setTimeout(()=>t.classList.remove("sh2"),2500)}
-if("serviceWorker"in navigator){const sw=`const C="vt-v3";self.addEventListener("install",e=>self.skipWaiting());self.addEventListener("activate",e=>e.waitUntil(clients.claim()));self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.open(C).then(cache=>cache.match(e.request).then(r=>{const fp=fetch(e.request).then(res=>{cache.put(e.request,res.clone());return res}).catch(()=>r);return r||fp})))})`;const b=new Blob([sw],{type:"application/javascript"});navigator.serviceWorker.register(URL.createObjectURL(b)).catch(()=>{})}
-const mf=JSON.stringify({name:"VitaTrack",short_name:"VitaTrack",start_url:".",display:"standalone",background_color:"#F8F7F4",theme_color:"#16A34A",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>",sizes:"any",type:"image/svg+xml"}]});
-const ml=document.createElement("link");ml.rel="manifest";ml.href=URL.createObjectURL(new Blob([mf],{type:"application/manifest+json"}));document.head.appendChild(ml);
-ld();if(S.user)showApp();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
