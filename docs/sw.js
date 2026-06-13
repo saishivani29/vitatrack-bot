@@ -1,4 +1,4 @@
-const CACHE = 'vt-v4';
+const CACHE = 'vt-v5';
 const SHELL = ['./', './manifest.json', './icons/icon.svg', './icons/icon-maskable.svg'];
 
 self.addEventListener('install', e => {

@@ -7,10 +7,11 @@ const MPS={Happy:100,Good:80,Neutral:60,Low:30,Stressed:20};
 const CM={tasks:{e:"✅",n:"Tasks",c:"#16A34A"},fitness:{e:"💪",n:"Fitness",c:"#EA580C"},diet:{e:"🥗",n:"Diet",c:"#0D9488"},sleep:{e:"😴",n:"Sleep",c:"#7C3AED"},mood:{e:"😊",n:"Mood",c:"#D97706"},journal:{e:"📓",n:"Journal",c:"#9333EA"},habits:{e:"🔄",n:"Habits",c:"#2563EB"},learning:{e:"📚",n:"Learning",c:"#F59E0B"},gratitude:{e:"🙏",n:"Gratitude",c:"#EC4899"}};
 const PN={home:"Dashboard",score:"Weekly Score",track:"Track Today",journal:"Journal & Notes",settings:"Settings"};
 const scc=s=>{const dk=document.documentElement.dataset.theme==="dark";if(s>=80)return dk?"#4ADE80":"#16A34A";if(s>=60)return dk?"#60A5FA":"#2563EB";if(s>=40)return dk?"#FCD34D":"#D97706";return dk?"#F87171":"#DC2626"};
-let S={user:null,checks:{},notes:{},sleepLog:{},weekly:{},checkins:[],settings:{appsScriptUrl:"",spreadsheetId:"",clientId:"",challengeStart:"",theme:""}};
+const DEFAULT_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxbI-4Dsp1rI48Hg01NCoEdeeLNa6veXHAL5f1J6vr3BrXp8mblXa_zkXtNxyoGx6EM/exec";
+let S={user:null,checks:{},notes:{},sleepLog:{},weekly:{},checkins:[],settings:{appsScriptUrl:DEFAULT_SCRIPT_URL,spreadsheetId:"",clientId:"",challengeStart:"",theme:""}};
 let cp="home",cc=null,ns=[];
 
-function ld(){try{const r=localStorage.getItem(SK);if(r){const p=JSON.parse(r);S={...S,...p,settings:{...S.settings,...(p.settings||{})}}}}catch(e){}}
+function ld(){try{const r=localStorage.getItem(SK);if(r){const p=JSON.parse(r);const ps=p.settings||{};S={...S,...p,settings:{...S.settings,...ps,appsScriptUrl:ps.appsScriptUrl||DEFAULT_SCRIPT_URL}}}}catch(e){}}
 function sv(){try{localStorage.setItem(SK,JSON.stringify(S))}catch(e){}}
 const td=()=>new Date().toISOString().split("T")[0];
 const wks=()=>{const d=new Date();d.setDate(d.getDate()-d.getDay()+1);return d.toISOString().split("T")[0]};
@@ -48,7 +49,7 @@ function toggleTheme(){
 
 /* ─── Auth ──────────────────────────────────── */
 function signInGoogle(){const cid=S.settings.clientId;if(!cid){toast("Set Google Client ID in Settings first.");return}try{google.accounts.id.initialize({client_id:cid,callback:(res)=>{const p=JSON.parse(atob(res.credential.split(".")[1]));S.user={name:p.name,email:p.email,picture:p.picture};sv();showApp()},auto_select:true});google.accounts.id.prompt()}catch(e){demoLogin()}}
-function demoLogin(){const name=prompt("Enter your name:");if(!name)return;S.user={name,email:"local@vitatrack.app",picture:null};sv();showApp()}
+function demoLogin(){S.user={name:"Guest",email:"local@vitatrack.app",picture:null};sv();showApp()}
 function showApp(){document.getElementById("ls").style.display="none";document.getElementById("app").classList.add("v");document.getElementById("hd2").textContent=new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short"});nav("home")}
 function signOut(){if(!confirm("Sign out?"))return;S.user=null;sv();document.getElementById("app").classList.remove("v");document.getElementById("ls").style.display="flex"}
 
